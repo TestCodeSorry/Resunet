@@ -4,7 +4,7 @@ using Dapper;
 using Npgsql;
 using Resunet.DAL;
 
-namespace Resunet.DAL.Auth
+namespace Resunet.DAL
 {
     public class AuthDAL : IAuthDAL
     {

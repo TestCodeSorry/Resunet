@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Resunet.DAL.Models;
 
-namespace Resunet.DAL.Auth
+namespace Resunet.DAL
 {
     public interface IAuthDAL
     {
