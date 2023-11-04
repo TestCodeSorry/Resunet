@@ -3,6 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSingleton<Resunet.BL.Auth.IAuthBL, Resunet.BL.Auth.AuthBL>();
+builder.Services.AddSingleton<Resunet.DAL.IAuthDAL, Resunet.DAL.AuthDAL>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
