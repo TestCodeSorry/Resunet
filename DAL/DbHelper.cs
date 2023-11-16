@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Resunet.DAL
 {
     public class DbHelper
