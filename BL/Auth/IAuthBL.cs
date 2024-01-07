@@ -1,5 +1,5 @@
-﻿using Resunet.DAL.Models;
-using System;
+﻿using System;
+using Resunet.DAL.Models;
 
 namespace Resunet.BL.Auth
 {
