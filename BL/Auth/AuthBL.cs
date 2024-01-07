@@ -30,5 +30,10 @@ namespace Resunet.BL.Auth
         {
             httpContextAccessor.HttpContext?.Session.SetInt32(AuthConstants.AUTH_SESSION_PARAM_NAME, id);
         }
+
+        public Task<int> Authenticate(string email, string password, bool rememberMe)
+        {
+            throw new Exception("Not implemented");
+        }
     }
 }
