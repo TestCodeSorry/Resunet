@@ -28,8 +28,17 @@ namespace Resunet.Controllers
         {
             if (ModelState.IsValid)
             {
-                await authBl.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
-                return Redirect("/");
+                var errorModel = await authBl.ValidateEmail(model.Email ?? "");
+                if (errorModel != null)
+                {
+                    ModelState.TryAddModelError("Email", errorModel.ErrorMessage!);
+                }
+            }
+
+            if (ModelState.IsValid)
+            {
+                    await authBl.CreateUser(AuthMapper.MapRegisterViewModelToUserModel(model));
+                    return Redirect("/");
             }
             return View("Index", model);
         }
