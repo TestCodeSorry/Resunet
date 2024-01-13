@@ -26,8 +26,15 @@ namespace Resunet.Controllers
         {
             if (ModelState.IsValid)
             {
-                await authBl.Authenticate(model.Email!, model.Password!, model.RememberMe == true);
-                return Redirect("/");
+                try 
+                { 
+                    await authBl.Authenticate(model.Email!, model.Password!, model.RememberMe == true);
+                    return Redirect("/");
+                }
+                catch (Resunet.BL.AuthorizationException)
+                {
+                    ModelState.AddModelError("Email", "Email или Пароль неверные");
+                }
             }
             return View("Index", model);
         }

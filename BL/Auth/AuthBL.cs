@@ -2,6 +2,7 @@
 using Resunet.DAL.Models;
 using Resunet.DAL;
 using System.ComponentModel.DataAnnotations;
+using Resunet.BL;
 
 namespace Resunet.BL.Auth
 {
@@ -35,12 +36,13 @@ namespace Resunet.BL.Auth
         public async Task<int> Authenticate(string email, string password, bool rememberMe)
         {
             var user = await authDal.GetUser(email);
-            if (user.Password == encrypt.HashPassword(password, user.Salt))
+
+            if (user.UserID != null && user.Password == encrypt.HashPassword(password, user.Salt))
             {
                 Login(user.UserID ?? 0);
                 return user.UserID ?? 0;
             }
-            return 0;
+            throw new AuthorizationException();
         }
 
         public async Task<ValidationResult?> ValidateEmail(string email)
